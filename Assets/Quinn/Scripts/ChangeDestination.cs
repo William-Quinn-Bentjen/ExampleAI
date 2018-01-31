@@ -19,10 +19,10 @@ public class ChangeDestination : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I collided");
+        //Debug.Log("I collided");
         if (other.tag == "AI")
         {
-            Debug.Log("I destination updated");
+            //Debug.Log("I destination updated");
             other.GetComponent<AgentPather>().UpdateDestination(NewDestination);
         }
     }
