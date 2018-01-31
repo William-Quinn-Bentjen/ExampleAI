@@ -27,7 +27,7 @@ public class WanderBehavior : MonoBehaviour {
     Rigidbody rb;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
@@ -38,13 +38,25 @@ public class WanderBehavior : MonoBehaviour {
         target.z = target.y;
         target += transform.position;
         target += transform.forward * distance;
-        target.y = 0;
+        target.y = transform.position.y;
 
         Vector3 dir = (target - transform.position).normalized;
         Vector3 desiredVelocity = dir * speed;
-        rb.AddForce(desiredVelocity - rb.velocity);
-        transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.AddForce(desiredVelocity - rb.velocity);
+        //transform.forward = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         Debug.DrawLine(transform.position, transform.position + (transform.forward * distance), Color.green);
         Debug.DrawLine(transform.position + (transform.forward * distance), target, Color.black);
+    }
+    public Vector3 returnWanderPoints()
+    {
+        target = Vector3.zero;
+        target = Random.insideUnitCircle.normalized * raduis;
+        target = (Vector2)target + Random.insideUnitCircle * jitter;
+
+        target.z = target.y;
+        target += transform.position;
+        target += transform.forward * distance;
+        target.y = transform.position.y;
+        return target;
     }
 }

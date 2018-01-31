@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FleeBehavior : MonoBehaviour
 {
-    Rigidbody rb;
+    //Rigidbody rb;
     Vector3 desiredVelocity;
 
     public float speed;
@@ -12,13 +12,17 @@ public class FleeBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        desiredVelocity = -speed * (target.position - transform.position).normalized;
-        rb.AddForce(desiredVelocity - rb.velocity);
+        //desiredVelocity = -speed * (target.position - transform.position).normalized;
+        //rb.AddForce(desiredVelocity - rb.velocity);
+    }
+    public Vector3 returnFleeVector()
+    {
+        return (target.position - transform.position) * -1 + transform.position;
     }
 }
